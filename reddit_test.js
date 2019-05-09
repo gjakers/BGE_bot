@@ -15,7 +15,7 @@ const options = {
 
 request(options, function(err, response, body) {
 	parser.parseString(body, function(err, data) {
-		data['feed']['entry'].forEach( function(i, entry) {
+		data['feed']['entry'].forEach( function(entry, i) {
 			if(i == 0)
 				console.log( entry['content'] );
 		});
