@@ -1,0 +1,27 @@
+{
+  "name": "bge_bot",
+  "version": "1.0.0",
+  "description": "moderate r/bestguyever subreddit",
+  "main": "check_yt.js",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "dom-parser": "^0.1.6",
+    "request": "^2.88.0",
+    "snoowrap": "^1.15.2",
+    "xml2js": "^0.4.19"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gjakers/BGE_bot.git"
+  },
+  "author": "graham.akers@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gjakers/BGE_bot/issues"
+  },
+  "homepage": "https://github.com/gjakers/BGE_bot#readme"
+}
