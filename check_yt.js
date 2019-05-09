@@ -1,14 +1,12 @@
 const request   = require('request');
-const cheerio   = require('cheerio');
 const snoowrap  = require('snoowrap');
-const DOMParser = require('dom-parser');
 const xml2js    = require('xml2js');
 
 const r = new snoowrap( {
   clientId:      process.env.client_id,
   clientSecret:  process.env.client_secret,
   refresh_token: process.env.refresh_token
-} )
+} );
 
 var parser = new xml2js.Parser();
 
