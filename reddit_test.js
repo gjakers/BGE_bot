@@ -16,11 +16,7 @@ const options = {
 request(options, function(err, response, body) {
 	parser.parseString(body, function(err, data) {
 		data['feed']['entry'].forEach( function(entry) {
-			r.getSubreddit('pizza_friends').submitSelfpost(
-				{title: 'test',
-				 text: entry['content'][0]['$']['href']
-				}
-			);
+			console.log( text: entry['content'][0]['$']['href'] );
 		});
 	});
 });
