@@ -15,8 +15,9 @@ const options = {
 
 request(options, function(err, response, body) {
 	parser.parseString(body, function(err, data) {
-		data['feed']['entry'].forEach( function(entry) {
-			console.log( entry['content'][0]['$']['href'] );
+		data['feed']['entry'].forEach( function(i, entry) {
+			if(i == 0)
+				console.log( entry['content'] );
 		});
 	});
 });
