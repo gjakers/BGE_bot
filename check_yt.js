@@ -12,7 +12,7 @@ const r = new snoowrap( {
 
 var parser = new xml2js.Parser();
 
-const options = {
+var options = {
   url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCGgy9QqFwElrVg4vf6QNX_A",
   headers: {
     'User-Agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) " +
@@ -22,20 +22,30 @@ const options = {
   }
 };
 
-request(options, function(err, response, body) {
-  parser.parseString(body, function(err, data) {
-    data['feed']['entry'].forEach( function(entry) {
-      var title = entry['title'][0];
-      var time = entry['published'][0];
-      var url = entry['link'][0]['$']['href'];
-      console.log(title);
-      if( (Date.now() - Date.parse(time)) <= 600000 ) {
-        console.log("Creating post \"", title, "\"\n");
-        r.getSubreddit('bestguyever').submitLink( {
-          title: title,
-          url: url
-        })
-      }
-    });
-  });
+request(options, function(err, response, yt_body) {
+	parser.parseString(yt_body, function(err, yt_data) {
+		options['url'] = "https://www.reddit.com/r/bestguyever.rss";
+		request(options, function(err, response, rd_body) {
+			parser.parseString(rd_body, function(err, rd_data) {
+				yt_data['feed']['entry'].forEach( function(yt_entry) {
+					var title = yt_entry['title'][0];
+					var time  = yt_entry['published'][0];
+					var url   = yt_entry['link'][0]['$']['href'];
+				
+					if( (Date.now() - Date.parse(time)) <= 1200000 ) {
+						var exists = false;
+						rd_data['feed']['entry'].forEach( function(rd_entry) {
+							if(rd_entry['content'][0]['_'].includes(url))
+								exists = true
+						});
+						if !exists {
+							r.getSubreddit('bestguyever').submitLink({
+								title: title,
+								url: url });
+						}
+					}
+				});
+			});
+		});
+	});
 });
