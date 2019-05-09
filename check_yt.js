@@ -38,7 +38,7 @@ request(options, function(err, response, yt_body) {
 							if(rd_entry['content'][0]['_'].includes(url))
 								exists = true
 						});
-						if !exists {
+						if (exists == false) {
 							r.getSubreddit('bestguyever').submitLink({
 								title: title,
 								url: url });
