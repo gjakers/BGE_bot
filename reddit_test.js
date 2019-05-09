@@ -18,13 +18,9 @@ request(options, function(err, response, body) {
 		data['feed']['entry'].forEach( function(entry) {
 			r.getSubreddit('pizza_friends').submitSelfpost(
 				{title: 'test',
-				 text: entry['content']
+				 text: entry['content'][0]['$']['href']
 				}
 			);
-
-		
-		
-		
 		});
 	});
 });
