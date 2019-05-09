@@ -16,7 +16,7 @@ const options = {
 request(options, function(err, response, body) {
 	parser.parseString(body, function(err, data) {
 		data['feed']['entry'].forEach( function(entry) {
-			console.log( text: entry['content'][0]['$']['href'] );
+			console.log( entry['content'][0]['$']['href'] );
 		});
 	});
 });
