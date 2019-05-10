@@ -39,9 +39,9 @@ request(options, function(err, response, yt_body) {
 								exists = true
 						});
 						if (exists == false) {
-							r.getSubreddit('bestguyever').submitLink({
-								title: title,
-								url: url });
+							r.getSubreddit('bestguyever')
+								.submitLink({ title: title, url: url })
+								.assignFlair({ text: "Official", css_class: 'official' });
 						}
 					}
 				});
