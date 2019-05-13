@@ -33,12 +33,14 @@ request(options, function(err, response, yt_body) {
 					var url   = yt_entry['link'][0]['$']['href'];
 				
 					if( (Date.now() - Date.parse(time)) <= 1200000 ) {
+						console.log("Found new upload: " + title);
 						var exists = false;
 						rd_data['feed']['entry'].forEach( function(rd_entry) {
 							if(rd_entry['content'][0]['_'].includes(url))
 								exists = true
 						});
 						if (exists == false) {
+							console.log("posting to reddit");
 							r.getSubreddit('bestguyever')
 								.submitLink({ title: title, url: url })
 								.assignFlair({ text: "Official", css_class: 'official' });
