@@ -40,6 +40,7 @@ request(options, function(err, response, yt_body) {
 								exists = true
 						});
 						if (exists == false) {
+							if (title.includes("Ripple")) { return; }
 							console.log("posting to reddit");
 							r.getSubreddit('bestguyever')
 								.submitLink({ title: title, url: url })
