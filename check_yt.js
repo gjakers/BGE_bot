@@ -34,13 +34,18 @@ request(options, function(err, response, yt_body) {
 				
 					if( (Date.now() - Date.parse(time)) <= 1200000 ) {
 						console.log("Found new upload: " + title);
+						if ( title.includes("Ripple") ||
+						     title.includes("RIPPLE") ||
+						     title.includes("XRP")   )
+						{ 
+							return;
+						}
 						var exists = false;
 						rd_data['feed']['entry'].forEach( function(rd_entry) {
 							if(rd_entry['content'][0]['_'].includes(url))
 								exists = true
 						});
 						if (exists == false) {
-							if (title.includes("Ripple")) { return; }
 							console.log("posting to reddit");
 							r.getSubreddit('bestguyever')
 								.submitLink({ title: title, url: url })
